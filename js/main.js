@@ -8,9 +8,11 @@
     if($("#toc").length){
 
         // add id's to h2
-        $('#content-core h2').each( function(i) {
-            $(this).attr('id', 'anchor' + i );
-        });
+		$('#content-core h2').each( function(i) {
+			if($(this).attr('id') === undefined) {
+				$(this).attr('id', 'anchor' + i );
+			}
+		});
 
         // init tocbot
         tocbot.init({
@@ -21,7 +23,7 @@
             listClass: 'linklist linklist-dark',
             positionFixedSelector: 'nav[data-lockfixed="true"]',
             positionFixedClass: 'stick',
-            fixedSidebarOffset: 200,
+            fixedSidebarOffset: $('nav[data-lockfixed="true"]').offset().top,
             orderedList: false
         });
 
